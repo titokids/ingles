@@ -37,9 +37,20 @@ fbq('init','1104814825875871');fbq('track','PageView');</script>
 <li>Los mismos dibujos de la app</li><li>PDF tamaño carta, 31 páginas con la portada</li><li>Lo imprimes en casa, y otra vez cuando haga falta</li></ul></div>
 <div class="precio"><b>US$7</b><span>un solo pago</span></div>
 <p class="nota">Garantía de 7 días: si no lo quieres, te devolvemos tu dinero.</p>
-<a class="btn" data-checkout data-ev="downsell_si" href="https://pay.hotmart.com/B108109674B?checkoutMode=10">Sí, quiero el cuaderno</a>
+<!-- HOTMART - Sales Funnel Widget -->
+<div id="hotmart-sales-funnel"></div>
+<div id="plano-b" hidden><a class="btn" data-checkout data-ev="downsell_si" href="https://pay.hotmart.com/B108109674B?checkoutMode=10">Sí, quiero el cuaderno</a>
 <p class="nota">Se abre el pago en Hotmart.</p>
-<a class="no" data-ev="downsell_no" href="https://titokids.com/ingles-app/acceso/n1-518830fa.html">No, gracias. Ir a mi app</a>
+<a class="no" data-ev="downsell_no" href="https://titokids.com/ingles-app/acceso/n1-518830fa.html">No, gracias. Ir a mi app</a></div>
+<script src="https://checkout.hotmart.com/lib/hotmart-checkout-elements.js"></script>
+<script>
+(function(){var b=document.getElementById("plano-b"),w=document.getElementById("hotmart-sales-funnel"),ok=false;
+function reserva(esconde){if(esconde)w.style.display="none";b.hidden=false}
+if(!location.search){reserva(true);return}
+try{checkoutElements.init("salesFunnel",{onLoad:function(){ok=true},onLoadDataError:function(){reserva(true)}}).mount("#hotmart-sales-funnel")}catch(e){reserva(true)}
+setTimeout(function(){if(!ok)reserva(false)},10000)})();
+</script>
+<!-- HOTMART - Sales Funnel Widget -->
 </main><script>
 /* a origem do clique (UTM) que a LP guardou segue para o checkout seguinte */
 (function(){var P=["utm_source","utm_medium","utm_campaign","utm_content","utm_term","fbclid","src","sck"],g={};

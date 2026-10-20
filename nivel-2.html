@@ -35,9 +35,20 @@ fbq('init','1104814825875871');fbq('track','PageView');</script>
 <li>30 lecciones nuevas, de unos 10 minutos</li><li>5 mundos y 4 cuentos nuevos</li>
 <li>los sonidos que vienen después: sh, ch, th, fr, bl, ai, ee y la e mágica</li><li>los dos niveles en la misma app</li></ul></div>
 <div class="precio"><b>US$19</b><span>Nivel 2 · un solo pago. Sin mensualidad. Funciona sin internet.</span></div>
-<a class="btn" data-checkout data-ev="upsell_si" href="https://pay.hotmart.com/N108109663B?checkoutMode=10">Seguir con Tito al Nivel 2</a>
 <p class="nota">Garantía de 7 días, igual que en el Nivel 1: si ves que no es para ustedes, pides el reembolso.</p>
-<a class="no" data-ev="upsell_no" href="cuaderno.html">No, gracias. Llévame a mi Nivel 1.</a>
+<!-- HOTMART - Sales Funnel Widget -->
+<div id="hotmart-sales-funnel"></div>
+<div id="plano-b" hidden><a class="btn" data-checkout data-ev="upsell_si" href="https://pay.hotmart.com/N108109663B?checkoutMode=10">Seguir con Tito al Nivel 2</a>
+<a class="no" data-ev="upsell_no" href="cuaderno.html">No, gracias. Llévame a mi Nivel 1.</a></div>
+<script src="https://checkout.hotmart.com/lib/hotmart-checkout-elements.js"></script>
+<script>
+(function(){var b=document.getElementById("plano-b"),w=document.getElementById("hotmart-sales-funnel"),ok=false;
+function reserva(esconde){if(esconde)w.style.display="none";b.hidden=false}
+if(!location.search){reserva(true);return}
+try{checkoutElements.init("salesFunnel",{onLoad:function(){ok=true},onLoadDataError:function(){reserva(true)}}).mount("#hotmart-sales-funnel")}catch(e){reserva(true)}
+setTimeout(function(){if(!ok)reserva(false)},10000)})();
+</script>
+<!-- HOTMART - Sales Funnel Widget -->
 </main><script>
 /* a origem do clique (UTM) que a LP guardou segue para o checkout seguinte */
 (function(){var P=["utm_source","utm_medium","utm_campaign","utm_content","utm_term","fbclid","src","sck"],g={};
