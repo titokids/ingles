@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Inglés con Tito · para que tu hijo lea en inglés</title>
+<meta name="description" content="Una app para que tu hijo aprenda a leer en inglés, aunque tú no hables inglés. Cada sonido en voz nativa, y tu guía en español. Un solo pago, sin suscripción.">
+<meta name="theme-color" content="#3BAA6B">
+<link rel="icon" href="img/favicon-32.png">
+<link rel="apple-touch-icon" href="img/icon-192.png">
+<link rel="preload" href="fonts/nunito-900.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="img/vsl-lp-poster.jpg" as="image" fetchpriority="high">
+<link rel="stylesheet" href="fonts/fontes.css">
+<!-- PUBLICAÇÃO: pixel base do Meta e script de visitas do painel (?o=2026-10-ingles-hispanos) entram aqui, no <head> -->
+<style>
+:root{--bg:#FFF8EC;--card:#FFFFFF;--green:#3BAA6B;--green-d:#2C8A54;--orange:#FF9F43;--orange-d:#D9802C;--yellow:#FFD166;--ink:#3D3355;--ink-2:#6E6487;--line:#EFE3CC;--soft:#FFF1D6;
+  --shadow:0 6px 0 rgba(61,51,85,.10),0 10px 24px rgba(61,51,85,.10);--r:24px;--letter:"Andika",sans-serif;--ui:"Nunito",system-ui,sans-serif}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:600 17px/1.5 var(--ui)}
+img{max-width:100%;height:auto;display:block}
+.wrap{max-width:520px;margin:0 auto;padding:0 18px}
+h1,h2,h3{font-family:var(--ui);font-weight:900;letter-spacing:-.01em;margin:0}
+p{margin:0 0 12px}
+/* topo */
+.hero{padding:18px 0 8px;text-align:center}
+.kicker{font:800 13px/1.35 var(--ui);color:var(--green-d);letter-spacing:.02em;margin-bottom:12px}
+.kicker b{color:var(--ink)}
+.hero h1{font-size:clamp(27px,7.6vw,36px);line-height:1.13;margin-bottom:12px}
+.hero h1 em{font-style:normal;color:var(--green-d)}
+.hero .sub{font-size:17px;color:var(--ink-2);margin:0 auto 6px;max-width:440px}
+.hero-img{width:auto;height:clamp(150px,24vh,230px);margin:4px auto 12px;filter:drop-shadow(0 10px 14px rgba(61,51,85,.18))}
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;border:0;cursor:pointer;font:900 20px/1.15 var(--ui);color:#fff;background:var(--green);border-radius:99px;padding:19px 22px;box-shadow:0 6px 0 var(--green-d),0 12px 22px rgba(44,138,84,.25);text-decoration:none;text-align:center}
+.btn:active{transform:translateY(4px);box-shadow:0 2px 0 var(--green-d)}
+.btn.buy{background:var(--orange);box-shadow:0 6px 0 var(--orange-d),0 12px 22px rgba(217,128,44,.25)}
+.btn.buy:active{box-shadow:0 2px 0 var(--orange-d)}
+.btn .play{width:0;height:0;border-left:16px solid #fff;border-top:10px solid transparent;border-bottom:10px solid transparent}
+.note{font:800 14px/1.4 var(--ui);color:var(--ink-2);margin:10px 0 0;text-align:center}
+.link-buy{display:inline-block;margin:12px 0 4px;font:800 15px/1.4 var(--ui);color:var(--ink-2);text-decoration:underline;text-underline-offset:3px;background:none;border:0;cursor:pointer}
+/* VSL do topo (4:5): começa muda com legenda; o botão de som fica no alto, longe do rosto do Tito */
+.vsl{position:relative;width:calc(100% - 36px);max-width:484px;aspect-ratio:4/5;margin:4px auto 16px;border-radius:22px;overflow:hidden;background:#EFE3CC;box-shadow:0 14px 30px rgba(61,51,85,.22);cursor:pointer}
+.vsl video{display:block;width:100%;height:100%;object-fit:cover}
+/* botão de som (padrão de VSL, discreto: vidro escuro na cor da página, só o anel do ícone pulsa); some no primeiro toque */
+.vsl .som{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:8px;border:1.5px solid rgba(255,255,255,.35);border-radius:20px;padding:16px 22px 15px;background:rgba(61,51,85,.68);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);color:#fff;cursor:pointer;box-shadow:0 10px 26px rgba(30,22,48,.28)}
+.vsl .som-ic{width:54px;height:54px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;animation:anel 1.8s ease-out infinite}
+.vsl .som-t{font:800 13.5px/1.2 var(--ui);opacity:.85;white-space:nowrap}
+.vsl .som-b{font:900 16.5px/1.2 var(--ui);white-space:nowrap}
+@keyframes anel{0%{box-shadow:0 0 0 0 rgba(255,255,255,.55)}100%{box-shadow:0 0 0 14px rgba(255,255,255,0)}}
+.vsl.com-som .som{display:none}
+.vsl .pausa{position:absolute;inset:0;display:none;align-items:center;justify-content:center;background:rgba(61,51,85,.25)}
+.vsl .pausa i{width:74px;height:74px;border-radius:50%;background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center}
+.vsl .pausa i:after{content:"";margin-left:6px;border-left:22px solid var(--ink);border-top:14px solid transparent;border-bottom:14px solid transparent}
+.vsl.parado .pausa{display:flex}
+/* controles: aparecem no toque e ficam com o vídeo pausado; a barra de progresso fica sempre */
+.vsl .ctl{position:absolute;left:0;right:0;bottom:5px;height:46px;display:flex;align-items:center;gap:8px;padding:0 10px;background:linear-gradient(rgba(20,16,32,0),rgba(20,16,32,.62));opacity:0;pointer-events:none;transition:opacity .25s}
+.vsl.com-som.ctl-on .ctl,.vsl.com-som.parado .ctl{opacity:1;pointer-events:auto}
+.vsl .cb{flex:0 0 34px;height:34px;border:0;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
+.vsl .tempo{color:#fff;font:800 12.5px/1 var(--ui);text-shadow:0 1px 2px rgba(0,0,0,.5);font-variant-numeric:tabular-nums}
+.vsl .esp{flex:1}
+.vsl #rVol{width:76px;accent-color:var(--orange);margin:0}
+.vsl.sem-volume #rVol{display:none}
+.vsl .prog{position:absolute;left:0;right:0;bottom:0;height:18px;cursor:pointer;touch-action:none}
+.vsl .prog:before{content:"";position:absolute;left:0;right:0;bottom:0;height:5px;background:rgba(255,255,255,.5)}
+.vsl .prog i{position:absolute;left:0;bottom:0;height:5px;width:0;background:var(--orange)}
+/* galeria */
+.galeria-sec h2{margin-bottom:10px}
+.lead-gal{margin:0 0 10px}
+.desliza{font:800 14px/1.3 var(--ui);color:var(--ink-2);margin:0 0 12px}
+.galeria{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 18px 18px;margin:0 -18px;scrollbar-width:none}
+.galeria::-webkit-scrollbar{display:none}
+.gitem{flex:0 0 58%;max-width:230px;margin:0;scroll-snap-align:center}
+.gitem .phone{width:100%;margin:0 0 12px;padding:7px;border-radius:30px}
+.gitem .phone .scr{border-radius:24px;padding-top:22px}
+.gitem .phone::before{top:12px;height:13px}
+.gitem p{font:700 15px/1.4 var(--ui);margin:0}.gitem p b{font-weight:900}
+/* corpo */
+section.bloco{padding:30px 0 6px}
+section.bloco h2{font-size:clamp(23px,6.4vw,29px);line-height:1.18;margin-bottom:14px}
+.cena{background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);padding:20px 18px 10px}
+.cena p{font-size:17.5px}
+.cena .fecha{font-weight:900}
+.porque .tit{font:900 19px/1.3 var(--ui);margin:16px 0 4px}
+.troca{display:flex;gap:10px;margin:14px 0}
+.troca div{flex:1;background:var(--card);border-radius:18px;box-shadow:var(--shadow);padding:12px 10px;text-align:center}
+.troca b{display:block;font:700 26px/1.1 var(--letter)}.troca small{font:800 13px/1.3 var(--ui);color:var(--ink-2)}
+.troca .bom b{color:var(--green-d)}
+.passos{list-style:none;padding:0;margin:0 0 14px;counter-reset:p}
+.passos li{counter-increment:p;position:relative;padding:12px 14px 12px 58px;background:var(--card);border-radius:18px;box-shadow:var(--shadow);margin:10px 0}
+.passos li::before{content:counter(p);position:absolute;left:14px;top:12px;width:32px;height:32px;border-radius:50%;background:var(--green);color:#fff;font:900 17px/32px var(--ui);text-align:center}
+.passos b{font-weight:900}
+.depois{background:#EAF7EF;border-radius:var(--r);padding:16px 18px 6px;margin-top:6px}
+.recibe{list-style:none;padding:0;margin:0}
+.recibe li{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--line)}
+.recibe li:last-child{border:0}
+.recibe .ic{flex:0 0 30px;height:30px;border-radius:50%;background:var(--green);color:#fff;font:900 17px/30px var(--ui);text-align:center}
+.recibe b{font-weight:900}
+.phone{position:relative;width:min(60%,240px);margin:6px auto 20px;background:var(--ink);border-radius:38px;padding:9px;box-shadow:0 18px 32px rgba(61,51,85,.28),inset 0 0 0 2px #5A4F75}
+.phone .scr{border-radius:30px;overflow:hidden;background:#1D1730;padding-top:30px}
+.phone img,.phone video{display:block;width:100%;height:auto;aspect-ratio:416/900;object-fit:cover}
+.phone::before{content:"";position:absolute;top:17px;left:50%;transform:translateX(-50%);width:30%;height:17px;background:var(--ink);border-radius:99px;z-index:1}
+.sinsub{background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);padding:20px 18px}
+.precio{display:flex;align-items:baseline;justify-content:center;gap:8px;margin:14px 0 4px}
+.precio b{font:900 44px/1 var(--ui)}.precio span{font:800 15px/1.2 var(--ui);color:var(--ink-2)}
+.garantia{display:flex;gap:14px;align-items:flex-start;background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);padding:18px}
+.garantia .sello{flex:0 0 64px;height:64px;border-radius:50%;background:var(--yellow);display:flex;align-items:center;justify-content:center;font:900 13px/1.05 var(--ui);text-align:center;box-shadow:0 4px 0 #E0B13F}
+.faq details{background:var(--card);border-radius:18px;box-shadow:var(--shadow);margin:10px 0;padding:0 16px}
+.faq summary{font:900 16.5px/1.35 var(--ui);padding:15px 26px 15px 0;cursor:pointer;list-style:none;position:relative}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:0;top:12px;font:900 24px/1 var(--ui);color:var(--green)}
+.faq details[open] summary::after{content:"−"}
+.faq details p{color:var(--ink-2);padding-bottom:6px}
+.final{text-align:center;padding:30px 0 10px}
+.final .resumo{font:800 16.5px/1.5 var(--ui);margin-bottom:16px}
+.final .cierre{font:900 18px/1.4 var(--ui);margin-top:16px}
+footer{padding:26px 0 110px;text-align:center;font:700 13px/1.6 var(--ui);color:var(--ink-2)}
+footer a{color:var(--ink-2)}
+/* barra fixa */
+.barra{position:fixed;left:0;right:0;bottom:0;z-index:20;background:rgba(255,248,236,.96);backdrop-filter:blur(6px);border-top:1px solid var(--line);padding:10px 14px calc(10px + env(safe-area-inset-bottom));display:flex;align-items:center;gap:12px;transform:translateY(110%);transition:transform .3s ease}
+.barra.on{transform:none}
+.barra .bt{flex:1;font:800 14px/1.3 var(--ui)}.barra .bt b{display:block;font:900 15.5px/1.2 var(--ui)}
+.barra .btn{width:auto;padding:14px 22px;font-size:17px}
+.toast{position:fixed;left:50%;bottom:96px;transform:translateX(-50%);background:var(--ink);color:#fff;font:800 14.5px/1.35 var(--ui);padding:12px 16px;border-radius:14px;z-index:30;display:none;max-width:90vw;text-align:center;pointer-events:none}
+</style>
+</head>
+<body>
+
+<header class="hero wrap">
+  <p class="kicker"><b>Inglés con Tito</b> · una app con guía en español</p>
+  <h1>Para ayudar a tu hijo a leer en inglés, <em>no hace falta hablar inglés.</em></h1>
+  <div class="vsl" id="vsl">
+    <video id="vVsl" src="img/vsl-lp.mp4" poster="img/vsl-lp-poster.jpg" muted playsinline preload="none" width="720" height="900"></video>
+    <button class="som" id="bSom" type="button">
+      <span class="som-ic"><svg viewBox="0 0 24 24" width="28" height="28" fill="#3D3355" aria-hidden="true"><path d="M3 9v6h4l5 4V5L7 9H3z"/><path d="M15.5 9.5l5 5M20.5 9.5l-5 5" stroke="#3D3355" stroke-width="2.2" stroke-linecap="round"/></svg></span>
+      <span class="som-t">Tu video ya comenzó</span>
+      <span class="som-b">Toca para escuchar</span>
+    </button>
+    <div class="pausa"><i></i></div>
+    <div class="ctl" id="ctl">
+      <button class="cb" id="bPlay" type="button" aria-label="Pausar"></button>
+      <span class="tempo" id="tempo">0:00 / 1:24</span><span class="esp"></span>
+      <button class="cb" id="bVol" type="button" aria-label="Sonido"></button>
+      <input type="range" id="rVol" min="0" max="1" step="0.05" value="1" aria-label="Volumen">
+    </div>
+    <div class="prog" id="prog"><i id="vslProgI"></i></div>
+  </div>
+  <button class="btn buy js-comprar" id="bComprarTopo" data-lugar="topo">Quiero las 30 lecciones</button>
+  <p class="note">US$17, un solo pago · sin suscripción · garantía de <span class="gd">7 días</span></p>
+</header>
+
+<main class="wrap">
+
+<!-- POR QUÉ (absorveu a cena; revisão do agente copy, 20/10/2026) -->
+<section class="bloco porque">
+  <h2>En inglés, la a se llama «ei». Pero en «sat» no suena «ei».</h2>
+  <p>Hay niños que entienden muy bien el inglés, y leerlo es otra cosa. En la escuela dicen que les está costando la lectura. En casa señalan una palabra de la tarea y esperan, y si se lee como en español, sale mal.</p>
+  <p>Es que a casi todos nos enseñaron las letras por su nombre.</p>
+  <div class="troca"><div><b>es · ei · ti</b><small>los nombres juntos</small></div><div class="bom"><b>sat</b><small>los sonidos juntos</small></div></div>
+  <p>Para leer en inglés sirve el sonido, no el nombre. Y por eso lo de siempre no alcanza:</p>
+  <p class="tit">El abecedario cantado.</p><p>Enseña cómo se llaman las letras, no cómo suenan.</p>
+  <p class="tit">La app toda en inglés.</p><p>Hasta las instrucciones. Él toca botones, tú no sabes qué está aprendiendo, y cuando se traba, la ayuda también está en inglés.</p>
+  <p class="tit">Las palabras de memoria.</p><p>Para algunas sirve. Pero si nadie le mostró cómo se arma una palabra con sus sonidos, cada palabra nueva es una más para memorizar.</p>
+  <p><b>No es falta de ganas, ni culpa tuya, ni de él.</b> Faltaba el paso del medio: los sonidos, en orden, y alguien que los pronuncie bien.</p>
+</section>
+
+<!-- O APP POR DENTRO -->
+<section class="bloco galeria-sec">
+  <h2>Lo que hace él, y lo que ves tú</h2>
+  <p class="lead-gal">Unos 10 minutos por lección, siempre en el mismo orden: primero los sonidos, después juntarlos, y de ahí a palabras, frases e historias. Cada lección usa solo sonidos que ya aprendió. Lo que se dice en inglés lo pronuncia una voz nativa; lo que te toca leer a ti viene en español.</p>
+  <p class="desliza">Desliza para ver la app por dentro →</p>
+  <div class="galeria">
+    <figure class="gitem"><div class="phone"><div class="scr"><img src="img/galeria/a-menu.webp" width="400" height="866" loading="lazy" alt=""></div></div><p><b>Él mismo la abre:</b> un toque en «¡A jugar!» y empieza la lección.</p></figure>
+    <figure class="gitem"><div class="phone"><div class="scr"><img src="img/galeria/b-mapa.webp" width="400" height="866" loading="lazy" alt=""></div></div><p><b>Avanza parada por parada</b> por 5 mundos, del prado al castillo.</p></figure>
+    <figure class="gitem"><div class="phone"><div class="scr"><img src="img/galeria/c-sonidos.webp" width="400" height="866" loading="lazy" alt=""></div></div><p><b>Toca la letra</b> y escucha cómo suena en inglés; aparece el dibujo con la palabra y su traducción.</p></figure>
+    <figure class="gitem"><div class="phone"><div class="scr"><img src="img/galeria/d-juntar.webp" width="400" height="866" loading="lazy" alt=""></div></div><p><b>El momento en que lee:</b> desliza el dedo y s, a, t se vuelven «sat».</p></figure>
+    <figure class="gitem"><div class="phone"><div class="scr"><img src="img/galeria/e-armar.webp" width="400" height="866" loading="lazy" alt=""></div></div><p><b>Ahora la arma él:</b> arrastra cada letra a su casita.</p></figure>
+    <figure class="gitem"><div class="phone"><div class="scr"><img src="img/galeria/f-cual.webp" width="400" height="866" loading="lazy" alt=""></div></div><p><b>Aquí se nota que entendió:</b> lee la palabra y elige el dibujo entre tres.</p></figure>
+    <figure class="gitem"><div class="phone"><div class="scr"><img src="img/galeria/g-cuento.webp" width="400" height="866" loading="lazy" alt=""></div></div><p><b>Del sonido a la historia:</b> cada palabra se ilumina mientras escucha la frase.</p></figure>
+    <figure class="gitem"><div class="phone"><div class="scr"><img src="img/galeria/h-adhesivo.webp" width="400" height="866" loading="lazy" alt=""></div></div><p><b>Cada lección termina con premio:</b> «¡Muy bien!» y un adhesivo nuevo.</p></figure>
+    <figure class="gitem"><div class="phone"><div class="scr"><img src="img/galeria/i-papas.webp" width="400" height="866" loading="lazy" alt=""></div></div><p><b>Tú no tienes que pronunciar nada:</b> tu guía viene en español, en cada lección.</p></figure>
+    <figure class="gitem"><div class="phone"><div class="scr"><img src="img/galeria/j-album.webp" width="400" height="866" loading="lazy" alt=""></div></div><p><b>Para que quiera volver mañana:</b> su álbum de adhesivos, lección a lección.</p></figure>
+  </div>
+  <div class="depois"><p>Después de la cena, diez minutos. Él con el celular, tú a su lado. Cuando se traba, ya no hay que adivinar: toca la letra y escucha cómo suena. Y el día que te lea «Sam sat on a mat», en su primera historia, vas a estar ahí para escucharlo.</p></div>
+</section>
+
+
+<!-- O QUE RECEBE -->
+<section class="bloco">
+  <h2>Lo que recibes</h2>
+  <ul class="recibe">
+    <li><span class="ic">✓</span><div><b>Las 30 lecciones de Tito, en 5 mundos:</b> el prado, el bosque, la playa, la nieve y el castillo. Del primer sonido a leer frases, en lecciones de unos 10 minutos que caben hasta en la noche más cansada.</div></li>
+    <li><span class="ic">✓</span><div><b>La pronunciación, en voz nativa.</b> Cada sonido y cada palabra, en inglés americano. En casa nadie tiene que adivinar cómo suena.</div></li>
+    <li><span class="ic">✓</span><div><b>4 historias para leer:</b> Sam the Cat, The Red Bus, Duck and Hen y My Dog Max. Están escritas con los sonidos que ya aprendió, para que las lea él, no para que se las lean.</div></li>
+    <li><span class="ic">✓</span><div><b>El álbum de adhesivos.</b> Un adhesivo por cada lección terminada. Porque si es aburrido, no quiere volver.</div></li>
+    <li><span class="ic">✓</span><div><b>Su certificado.</b> Al terminar las 30 lecciones, para celebrarlo en familia.</div></li>
+    <li><span class="ic">✓</span><div><b>La guía en español para ti.</b> En cada lección: «Qué aprende», «Cómo acompañar» y «Fuera de la pantalla», con algo para hacer juntos sin el celular. Y la lista de las palabras que ya lee, para que veas cuánto avanzó.</div></li>
+    <li><span class="ic">✓</span><div><b>Funciona sin internet.</b> Después de abrirla una vez, sigue funcionando sin conexión: de viaje, en la sala de espera o donde no haya wifi.</div></li>
+    <li><span class="ic">✓</span><div><b>En tu celular, Android o iPhone.</b> Se abre en el navegador y queda en la pantalla de inicio, como cualquier app, sin descargarla de la tienda y sin crear cuenta.</div></li>
+  </ul>
+</section>
+
+<!-- SEM ASSINATURA -->
+<section class="bloco">
+  <div class="sinsub">
+    <h2>Se paga una vez, y ya. Sin cobros sorpresa.</h2>
+    <p>Hay apps de lectura en inglés que cobran US$12.49 al mes. Y en muchas suscripciones, si la prueba gratis no se cancela a tiempo, el cobro llega solo, y a veces es de un año completo.</p>
+    <p>Inglés con Tito se paga una sola vez: US$17. Sin mensualidad, sin prueba gratis que después se cobra sola y sin renovación automática.</p>
+    <div class="precio"><b>US$17</b><span>un solo pago<br>sin suscripción</span></div>
+    <button class="btn buy js-comprar" data-lugar="sinsub">Quiero las 30 lecciones</button>
+    <p class="note">El pago se hace en Hotmart. Si la página aparece en inglés, no te preocupes: es la misma compra, y la app te llega en el momento.</p>
+  </div>
+</section>
+
+<!-- GARANTIA -->
+<section class="bloco">
+  <div class="garantia">
+    <div class="sello" id="gDias">7<br>días</div>
+    <div><h2 style="font-size:22px;margin-bottom:8px">Garantía de <span class="gd">7 días</span></h2>
+    <p>Prueba las primeras lecciones con él, en casa. Si ves que no es para ustedes, tienes <span class="gd">7 días</span> para pedir el reembolso, y te devolvemos todo lo que pagaste.</p></div>
+  </div>
+</section>
+
+<!-- PERGUNTAS -->
+<section class="bloco faq">
+  <h2>Preguntas antes de empezar</h2>
+  <details><summary>¿Y si yo no hablo nada de inglés?</summary><p>Para eso está hecha. Todo lo que se dice en inglés lo pronuncia una voz nativa, dentro de la app. Todo lo que te toca leer a ti está en español. Lo tuyo es sentarte a su lado, tocar la letra cuando se trabe y celebrar cada palabra que lea.</p></details>
+  <details><summary>¿Es una suscripción?</summary><p>No. Es un solo pago. No hay cobro mensual ni anual, y nada se renueva solo.</p></details>
+  <details><summary>¿Sirve si todavía no lee nada?</summary><p>Sí. Empieza desde el primer sonido, así que no hace falta que ya sepa leer, ni en inglés ni en español. Y si ya conoce algunas letras, las primeras lecciones le van a salir rápido.</p></details>
+  <details><summary>¿No es más tiempo de pantalla?</summary><p>Son unos 10 minutos por lección, contigo al lado. Y cada guía trae algo para hacer después, fuera de la pantalla: en la primera, buscar por la casa cosas que empiecen con el sonido de la s.</p></details>
+  <details><summary>¿Y si ya usa una app que le manda la escuela?</summary><p>Puede seguir con ella. La diferencia aquí es para ti: la guía en español te dice qué aprende en cada lección y cómo acompañarlo. Y cada palabra nueva se arma con sonidos que ya aprendió.</p></details>
+  <details><summary>¿Necesita internet?</summary><p>Solo para abrirla la primera vez. Después funciona sin conexión.</p></details>
+  <details><summary>¿En qué celular funciona?</summary><p>En Android y en iPhone, desde el navegador. Se abre con un enlace y la dejas en la pantalla de inicio, como cualquier app. No hay que descargarla de la tienda ni crear una cuenta.</p></details>
+  <details><summary>¿Cómo la recibo?</summary><p>En el momento. Al terminar el pago se abre una página que te lleva directo a la app. Y la guía de acceso te llega por correo electrónico y queda guardada en tu área de compras de Hotmart.</p></details>
+  <details><summary>¿Y si la página de pago aparece en inglés?</summary><p>Puede pasar: el pago se hace en Hotmart, la plataforma que procesa la compra, y su página a veces aparece en inglés y pide tu dirección. Llenas tus datos, pagas una vez y la app te llega al celular. No se envía nada a tu casa.</p></details>
+</section>
+
+<!-- FECHO -->
+<section class="final">
+  <p class="resumo">Las 30 lecciones, las 4 historias, el álbum, el certificado y la guía en español. Un solo pago de US$17, con garantía de <span class="gd">7 días</span>.</p>
+  <button class="btn buy js-comprar" data-lugar="final">Quiero las 30 lecciones</button>
+  <p class="cierre">La próxima vez que se trabe en una palabra, vas a saber cómo ayudarlo.</p>
+</section>
+
+</main>
+
+<footer class="wrap">
+  <p>Inglés con Tito · TitoKids</p>
+  <p><a href="terminos.html">Términos de uso</a> · <a href="privacidad.html">Política de privacidad</a></p>
+</footer>
+
+<div class="barra" id="barra"><div class="bt"><b>Inglés con Tito</b>US$17, un solo pago</div><button class="btn buy js-comprar" data-lugar="barra">Lo quiero</button></div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ===== configuração da oferta (preencher na publicação) ===== */
+const CHECKOUT = "";            /* link do produto front na Hotmart; o ?checkoutMode=10 faz o bump aparecer */
+const PARAMS_ORIGEM = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "fbclid", "src", "sck"];
+
+const $ = id => document.getElementById(id);
+const toast = t => { const el = $("toast"); el.textContent = t; el.style.display = "block"; clearTimeout(el._t); el._t = setTimeout(() => el.style.display = "none", 2600); };
+/* eventos do funil: o pixel e o painel entram na publicação; aqui só ficam registrados */
+const ev = (nome, extra) => { try { (window.dataLayer = window.dataLayer || []).push({event: nome, ...extra}); if (window.fbq) fbq("trackCustom", nome, extra || {}); } catch (e) {} };
+
+/* ===== a origem do clique sobrevive 7 dias (quem volta sem UTM não perde a atribuição) ===== */
+(() => {
+  try {
+    const q = new URLSearchParams(location.search), achados = {};
+    PARAMS_ORIGEM.forEach(k => { if (q.get(k)) achados[k] = q.get(k); });
+    if (Object.keys(achados).length) localStorage.setItem("tk_origem", JSON.stringify({p: achados, t: Date.now()}));
+  } catch (e) {}
+})();
+function urlCheckout(){
+  const u = new URL(CHECKOUT);
+  u.searchParams.set("checkoutMode", "10");
+  const atual = new URLSearchParams(location.search);
+  let guardado = {};
+  try { const g = JSON.parse(localStorage.getItem("tk_origem") || "null"); if (g && Date.now() - g.t < 7 * 864e5) guardado = g.p; } catch (e) {}
+  PARAMS_ORIGEM.forEach(k => { const v = atual.get(k) || guardado[k]; if (v && !u.searchParams.get(k)) u.searchParams.set(k, v); });
+  return u.toString();
+}
+document.querySelectorAll(".js-comprar").forEach(b => b.onclick = () => {
+  ev("clicou_comprar", {lugar: b.dataset.lugar});
+  if (!CHECKOUT){ toast("Vista previa: el enlace de compra se conecta al publicar"); return; }
+  location.href = urlCheckout();
+});
+
+/* ===== VSL: toca muda ao abrir; o primeiro toque liga o som e volta ao começo; depois o toque pausa e retoma ===== */
+(() => {
+  const box = $("vsl"), v = $("vVsl"), marcos = {};
+  const IC = {
+    play: '<svg viewBox="0 0 24 24" width="18" height="18" fill="#fff"><path d="M8 5v14l11-7z"/></svg>',
+    pausa: '<svg viewBox="0 0 24 24" width="18" height="18" fill="#fff"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg>',
+    som: '<svg viewBox="0 0 24 24" width="19" height="19" fill="#fff"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/></svg>',
+    mudo: '<svg viewBox="0 0 24 24" width="19" height="19" fill="#fff"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16 9l5 6M21 9l-5 6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>'
+  };
+  const fmt = s => { s = Math.max(0, Math.floor(s || 0)); return Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0"); };
+  const tocar = () => { const p = v.play(); if (p && p.catch) p.catch(() => {}); };
+  const icones = () => { const mudo = v.muted || v.volume === 0; $("bPlay").innerHTML = v.paused ? IC.play : IC.pausa; $("bPlay").setAttribute("aria-label", v.paused ? "Reproducir" : "Pausar");
+    $("bVol").innerHTML = mudo ? IC.mudo : IC.som; $("bVol").setAttribute("aria-label", mudo ? "Activar sonido" : "Silenciar"); };
+  let tCtl;
+  const mostra = () => { box.classList.add("ctl-on"); clearTimeout(tCtl); tCtl = setTimeout(() => box.classList.remove("ctl-on"), 2600); };
+  const alterna = () => { if (v.paused){ tocar(); box.classList.remove("parado"); } else { v.pause(); box.classList.add("parado"); } mostra(); icones(); };
+  /* no iPhone o volume da página é só leitura (manda o botão do aparelho): fica só o liga e desliga do som */
+  try { v.volume = .5; if (Math.abs(v.volume - .5) > .01) box.classList.add("sem-volume"); v.volume = 1; } catch (e) { box.classList.add("sem-volume"); }
+  tocar(); ev("vsl_inicio"); icones();
+  box.onclick = e => {
+    if (e.target.closest(".ctl, .prog")) return;
+    if (!box.classList.contains("com-som")){ v.muted = false; v.currentTime = 0; box.classList.add("com-som"); box.classList.remove("parado"); tocar(); ev("vsl_som"); mostra(); icones(); return; }
+    alterna();
+  };
+  $("bPlay").onclick = alterna;
+  $("bVol").onclick = () => { v.muted = !v.muted; if (!v.muted && v.volume === 0){ v.volume = 1; $("rVol").value = 1; } mostra(); icones(); };
+  $("rVol").oninput = () => { v.volume = +$("rVol").value; v.muted = v.volume === 0; mostra(); icones(); };
+  v.addEventListener("play", icones); v.addEventListener("pause", icones);
+  /* barra de progresso: sempre visível; tocar ou arrastar nela leva o vídeo para aquele ponto */
+  const prog = $("prog"), fill = $("vslProgI");
+  (function anda(){ if (v.duration){ fill.style.width = (v.currentTime / v.duration * 100) + "%"; $("tempo").textContent = fmt(v.currentTime) + " / " + fmt(v.duration); } requestAnimationFrame(anda); })();
+  const busca = e => { const r = prog.getBoundingClientRect(); if (v.duration) v.currentTime = Math.min(1, Math.max(0, (e.clientX - r.left) / r.width)) * v.duration; mostra(); };
+  prog.addEventListener("pointerdown", e => {
+    busca(e); try { prog.setPointerCapture(e.pointerId); } catch (x) {}
+    const mv = m => busca(m); prog.addEventListener("pointermove", mv);
+    prog.addEventListener("pointerup", () => prog.removeEventListener("pointermove", mv), {once: true});
+  });
+  v.addEventListener("timeupdate", () => {
+    if (v.muted || !v.duration) return;
+    [25, 50, 75].forEach(k => { if (!marcos[k] && v.currentTime / v.duration * 100 >= k){ marcos[k] = 1; ev("vsl_" + k); } });
+  });
+  v.addEventListener("ended", () => { if (!v.muted){ ev("vsl_fim"); box.classList.add("parado"); } else { v.currentTime = 0; tocar(); } });
+})();
+
+/* ===== barra fixa: aparece quando o botão do topo sai da tela ===== */
+const io = new IntersectionObserver(es => es.forEach(e => $("barra").classList.toggle("on", !e.isIntersecting && e.boundingClientRect.top < 0)), {threshold: 0});
+io.observe($("bComprarTopo"));
+</script>
+</body>
+</html>
