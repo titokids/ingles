@@ -289,7 +289,8 @@ function urlCheckout(){
 document.querySelectorAll(".js-comprar").forEach(b => b.onclick = () => {
   ev("clicou_comprar", {lugar: b.dataset.lugar});
   if (!CHECKOUT){ toast("Vista previa: el enlace de compra se conecta al publicar"); return; }
-  location.href = urlCheckout();
+  /* sai por um <a> de verdade: o script do painel só marca link (xcod=lv_<sessão> e o clique no checkout) */
+  const a = document.createElement("a"); a.href = urlCheckout(); a.style.display = "none"; document.body.appendChild(a); a.click();
 });
 
 /* ===== VSL: toca muda ao abrir; o primeiro toque liga o som e volta ao começo; depois o toque pausa e retoma ===== */
