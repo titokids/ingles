@@ -130,6 +130,40 @@ footer a{color:var(--ink-2)}
 .barra .bt{flex:1;font:800 14px/1.3 var(--ui)}.barra .bt b{display:block;font:900 15.5px/1.2 var(--ui)}
 .barra .btn{width:auto;padding:14px 22px;font-size:17px}
 .topfaixa{background:var(--orange);box-shadow:inset 0 -3px 0 var(--orange-d);color:#fff;text-align:center;font:900 15px/1.3 var(--ui);letter-spacing:.03em;text-transform:uppercase;padding:11px 12px;text-shadow:0 1px 2px rgba(0,0,0,.18)}
+/* repaginada 21/10/2026: bonus, chips, depoimentos em esteira, oferta */
+.hero .sub{margin:0 auto 14px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:4px 0 0;padding:0;list-style:none}
+.chips li{background:var(--card);border-radius:99px;box-shadow:0 2px 0 rgba(61,51,85,.08);padding:7px 13px;font:800 14px/1.2 var(--ui)}
+.chips li:before{content:"✓ ";color:var(--green-d);font-weight:900}
+.lead-bono{color:var(--ink-2);margin:-6px 0 14px}
+.bono{display:flex;gap:14px;align-items:center;background:var(--card);border-radius:20px;box-shadow:var(--shadow);padding:12px 14px;margin:0 0 12px}
+.bono img{flex:0 0 76px;width:76px;height:96px;object-fit:cover;object-position:top;border-radius:14px;background:var(--soft)}
+.bono img.tito{object-fit:contain;padding:4px}
+.bono .rot{display:inline-block;background:var(--orange);color:#fff;font:900 11.5px/1 var(--ui);letter-spacing:.06em;text-transform:uppercase;border-radius:99px;padding:4px 9px;margin-bottom:5px}
+.bono p{margin:0;font:700 15px/1.4 var(--ui)}.bono b{display:block;font:900 16.5px/1.3 var(--ui)}
+.rot-depo{font:900 13px/1.3 var(--ui);letter-spacing:.06em;text-transform:uppercase;color:var(--green-d);margin:0 0 6px}
+.carrossel{display:flex;gap:14px;overflow-x:auto;padding:6px 18px 18px;margin:0 -18px;scrollbar-width:none}
+.carrossel::-webkit-scrollbar{display:none}
+.carrossel.esteira{cursor:grab}.carrossel.esteira.arrastando{cursor:grabbing;user-select:none}
+.depo{flex:0 0 80%;max-width:340px;margin:0;background:var(--card);border-radius:20px;box-shadow:var(--shadow);padding:16px 18px;display:flex;flex-direction:column}
+.depo blockquote{margin:0;font:600 16px/1.5 var(--ui);flex:1}
+.depo blockquote::before{content:"\201C";display:block;font:900 44px/.9 var(--ui);color:var(--orange);height:22px}
+.depo figcaption{display:flex;align-items:center;gap:10px;margin-top:12px;font:900 16.5px/1.2 var(--ui)}
+.depo .av{flex:none;width:34px;height:34px;border-radius:50%;background:#EAF7EF;color:var(--green-d);display:grid;place-items:center;font:900 16px var(--ui)}
+.depo .est{color:#F5B301;font-size:16px;letter-spacing:1px;line-height:1}
+.inclui{list-style:none;padding:0;margin:14px 0 4px;text-align:left}
+.inclui li{padding:7px 0 7px 30px;position:relative;font:800 15.5px/1.35 var(--ui);border-bottom:1px solid var(--line)}
+.inclui li:last-child{border:0}
+.inclui li:before{content:"✓";position:absolute;left:4px;top:7px;color:var(--green-d);font-weight:900}
+.note s{color:var(--ink-2);text-decoration-thickness:2px;text-decoration-color:#D9534F;margin-right:2px}
+.barra .bt{flex:0 1 auto;display:flex;flex-direction:column;align-items:flex-start;line-height:1.1}
+.barra .bt s{font:800 14px/1 var(--ui);color:var(--ink-2);text-decoration-thickness:2px;text-decoration-color:#D9534F}
+.barra .bt b{font:900 25px/1 var(--ui);margin-top:2px}
+.barra .bt small{font:800 12.5px/1.2 var(--ui);color:var(--ink-2);margin-top:2px;white-space:nowrap}
+.barra .btn{flex:1 1 auto;min-width:56%;padding:16px 12px;font-size:17px;white-space:nowrap}
+.precio{flex-wrap:wrap;row-gap:6px}
+.precio s{flex-basis:100%;text-align:center;font:800 22px/1 var(--ui);color:var(--ink-2);text-decoration-thickness:2.5px;text-decoration-color:#D9534F}
+@media (min-width:700px){.depo{flex-basis:46%}}
 .toast{position:fixed;left:50%;bottom:96px;transform:translateX(-50%);background:var(--ink);color:#fff;font:800 14.5px/1.35 var(--ui);padding:12px 16px;border-radius:14px;z-index:30;display:none;max-width:90vw;text-align:center;pointer-events:none}
 </style>
 </head>
@@ -148,6 +182,7 @@ footer a{color:var(--ink-2)}
 
 <header class="hero wrap">
   <h1>Para ayudar a tu hijo a leer en inglés, <em>no hace falta hablar inglés.</em></h1>
+  <p class="sub">La app le pronuncia cada sonido con voz nativa. A ti te dice en español cómo ayudarlo.</p>
   <div class="vsl" id="vsl">
     <video id="vVsl" src="img/vsl-lp.mp4" poster="img/vsl-lp-poster.jpg" muted playsinline preload="none" width="720" height="900"></video>
     <button class="som" id="bSom" type="button">
@@ -165,28 +200,25 @@ footer a{color:var(--ink-2)}
     <div class="prog" id="prog"><i id="vslProgI"></i></div>
   </div>
   <button class="btn buy js-comprar" id="bComprarTopo" data-lugar="topo">Quiero ayudarlo a leer</button>
-  <p class="note">US$17, un solo pago · sin suscripción · garantía de <span class="gd">7 días</span></p>
+  <p class="note"><s>US$24.90</s> US$17, un solo pago · sin suscripción · garantía de <span class="gd">7 días</span></p>
 </header>
 
 <main class="wrap">
 
-<!-- POR QUÉ (absorveu a cena; revisão do agente copy, 20/10/2026) -->
+<!-- 2. MECANISMO: problema e solução -->
 <section class="bloco porque">
   <h2>En inglés, la a se llama «ei». Pero en «sat» no suena «ei».</h2>
   <p>Hay niños que entienden muy bien el inglés, y leerlo es otra cosa. En la escuela dicen que les está costando la lectura. En casa señalan una palabra de la tarea y esperan, y si se lee como en español, sale mal.</p>
   <p>Es que a casi todos nos enseñaron las letras por su nombre.</p>
   <div class="troca"><div><b>es · ei · ti</b><small>los nombres juntos</small></div><div class="bom"><b>sat</b><small>los sonidos juntos</small></div></div>
-  <p>Para leer en inglés sirve el sonido, no el nombre. Y por eso lo de siempre no alcanza:</p>
-  <p class="tit">El abecedario cantado.</p><p>Enseña cómo se llaman las letras, no cómo suenan.</p>
-  <p class="tit">La app toda en inglés.</p><p>Hasta las instrucciones. Él toca botones, tú no sabes qué está aprendiendo, y cuando se traba, la ayuda también está en inglés.</p>
-  <p class="tit">Las palabras de memoria.</p><p>Para algunas sirve. Pero si nadie le mostró cómo se arma una palabra con sus sonidos, cada palabra nueva es una más para memorizar.</p>
+  <p><b>Para leer en inglés sirve el sonido, no el nombre.</b></p>
   <p><b>No es falta de ganas, ni culpa tuya, ni de él.</b> Faltaba el paso del medio: los sonidos, en orden, y alguien que los pronuncie bien.</p>
+  <p>Unos 10 minutos por lección, siempre en el mismo orden: primero los sonidos, después juntarlos, y de ahí a palabras, frases e historias. Lo que se dice en inglés lo pronuncia una voz nativa; lo que te toca leer a ti viene en español.</p>
 </section>
-
-<!-- O APP POR DENTRO -->
+<!-- 3. O QUE RECEBE -->
 <section class="bloco galeria-sec">
-  <h2>Lo que hace él, y lo que ves tú</h2>
-  <p class="lead-gal">Unos 10 minutos por lección, siempre en el mismo orden: primero los sonidos, después juntarlos, y de ahí a palabras, frases e historias. Cada lección usa solo sonidos que ya aprendió. Lo que se dice en inglés lo pronuncia una voz nativa; lo que te toca leer a ti viene en español.</p>
+  <h2>Lo que recibes</h2>
+  <p class="lead-gal"><b>Las 30 lecciones de Tito, en 5 mundos:</b> el prado, el bosque, la playa, la nieve y el castillo. Del primer sonido a leer frases.</p>
   <p class="desliza">Desliza para ver la app por dentro →</p>
   <div class="galeria">
     <figure class="gitem"><div class="phone"><div class="scr"><img src="img/galeria/a-menu.webp" width="400" height="866" loading="lazy" alt=""></div></div><p><b>Él mismo la abre:</b> un toque en «¡A jugar!» y empieza la lección.</p></figure>
@@ -200,37 +232,42 @@ footer a{color:var(--ink-2)}
     <figure class="gitem"><div class="phone"><div class="scr"><img src="img/galeria/i-papas.webp" width="400" height="866" loading="lazy" alt=""></div></div><p><b>Tú no tienes que pronunciar nada:</b> tu guía viene en español, en cada lección.</p></figure>
     <figure class="gitem"><div class="phone"><div class="scr"><img src="img/galeria/j-album.webp" width="400" height="866" loading="lazy" alt=""></div></div><p><b>Para que quiera volver mañana:</b> su álbum de adhesivos, lección a lección.</p></figure>
   </div>
-  <div class="depois"><p>Después de la cena, diez minutos. Él con el celular, tú a su lado. Cuando se traba, ya no hay que adivinar: toca la letra y escucha cómo suena. Y el día que te lea «Sam sat on a mat», en su primera historia, vas a estar ahí para escucharlo.</p></div>
+  <ul class="chips"><li>Voz nativa en inglés americano</li><li>Funciona sin internet</li><li>Celular, tableta o computadora</li><li>Sin cuenta y sin tienda de apps</li></ul>
 </section>
-
-
-<!-- O QUE RECEBE -->
+<!-- 4. BONUS -->
 <section class="bloco">
-  <h2>Lo que recibes</h2>
-  <ul class="recibe">
-    <li><span class="ic">✓</span><div><b>Las 30 lecciones de Tito, en 5 mundos:</b> el prado, el bosque, la playa, la nieve y el castillo. Del primer sonido a leer frases, en lecciones de unos 10 minutos que caben hasta en la noche más cansada.</div></li>
-    <li><span class="ic">✓</span><div><b>La pronunciación, en voz nativa.</b> Cada sonido y cada palabra, en inglés americano. En casa nadie tiene que adivinar cómo suena.</div></li>
-    <li><span class="ic">✓</span><div><b>4 historias para leer:</b> Sam the Cat, The Red Bus, Duck and Hen y My Dog Max. Están escritas con los sonidos que ya aprendió, para que las lea él, no para que se las lean.</div></li>
-    <li><span class="ic">✓</span><div><b>El álbum de adhesivos.</b> Un adhesivo por cada lección terminada. Porque si es aburrido, no quiere volver.</div></li>
-    <li><span class="ic">✓</span><div><b>Su certificado.</b> Al terminar las 30 lecciones, para celebrarlo en familia.</div></li>
-    <li><span class="ic">✓</span><div><b>La guía en español para ti.</b> En cada lección: «Qué aprende», «Cómo acompañar» y «Fuera de la pantalla», con algo para hacer juntos sin el celular. Y la lista de las palabras que ya lee, para que veas cuánto avanzó.</div></li>
-    <li><span class="ic">✓</span><div><b>Funciona sin internet.</b> Después de abrirla una vez, sigue funcionando sin conexión: de viaje, en la sala de espera o donde no haya wifi.</div></li>
-    <li><span class="ic">✓</span><div><b>En el celular, la tableta o la computadora.</b> Android o iPhone, desde el navegador: queda en la pantalla de inicio como cualquier app, sin descargarla de la tienda y sin crear cuenta. Y si cambias de celular, no pierdes lo que pagaste: abres tu enlace de acceso y ahí está.</div></li>
-  </ul>
+  <h2>Y no son solo las 30 lecciones.</h2>
+  <p class="lead-bono">Esto también viene incluido, en el mismo pago único.</p>
+  <div class="bono"><img src="img/galeria/i-papas.webp" width="76" height="96" loading="lazy" alt=""><div><span class="rot">Para ti</span><p><b>La guía en español para ti.</b>En cada lección: «Qué aprende», «Cómo acompañar» y «Fuera de la pantalla».</p></div></div>
+  <div class="bono"><img src="img/galeria/g-cuento.webp" width="76" height="96" loading="lazy" alt=""><div><span class="rot">Para tu hijo</span><p><b>4 historias para leer.</b>Sam the Cat, The Red Bus, Duck and Hen y My Dog Max, con los sonidos que ya aprendió.</p></div></div>
+  <div class="bono"><img src="img/galeria/j-album.webp" width="76" height="96" loading="lazy" alt=""><div><span class="rot">Para tu hijo</span><p><b>El álbum de adhesivos.</b>Un adhesivo por cada lección terminada.</p></div></div>
+  <div class="bono"><img src="img/tito-formatura.webp" class="tito" width="76" height="96" loading="lazy" alt=""><div><span class="rot">Para tu hijo</span><p><b>Su certificado.</b>Al terminar las 30 lecciones, para celebrarlo en familia.</p></div></div>
 </section>
-
-<!-- SEM ASSINATURA -->
+<!-- 5. PROVA SOCIAL: depoimentos recebidos pelo Vini (21/10/2026), verbatim -->
+<section class="bloco">
+  <p class="rot-depo">Papás y mamás, con sus palabras</p>
+  <h2>Para tu hijo es un juego. Para ti, una forma de ayudarlo en casa.</h2>
+  <div class="carrossel depos esteira" tabindex="0" role="region" aria-label="Lo que dicen los papás, desliza para leer más">
+    <figure class="depo"><blockquote>A mi hijo le gusta mucho jugar con la aplicación. La compré porque quería que empezara a aprender inglés desde pequeño y me pareció una forma divertida de hacerlo. A veces hasta me enseña las palabras que va aprendiendo 😊</blockquote><figcaption><span class="av">C</span>Carlos <span class="est" aria-label="5 estrellas">★★★★★</span></figcaption></figure>
+    <figure class="depo"><blockquote>Me gustó mucho la idea de que mi hija aprendiera inglés jugando. No quería que lo viera como una tarea más del colegio. Cuando usa la aplicación, se divierte y eso ya me parece genial.</blockquote><figcaption><span class="av">M</span>Mariana <span class="est" aria-label="5 estrellas">★★★★★</span></figcaption></figure>
+    <figure class="depo"><blockquote>La verdad, no sabía muy bien cómo ayudar a mi hijo con el inglés en casa. Encontré esta aplicación y decidí probarla. Le gustan los juegos y se entretiene bastante con las actividades. Para mí, ha sido una buena compra.</blockquote><figcaption><span class="av">J</span>Javier <span class="est" aria-label="5 estrellas">★★★★★</span></figcaption></figure>
+    <figure class="depo"><blockquote>Mi hijo suele aburrirse rápido con las cosas de estudiar, pero con esta aplicación es diferente porque lo ve como un juego. La usamos un ratito por las tardes y me gusta que vaya aprendiendo algunas palabras en inglés mientras se divierte.</blockquote><figcaption><span class="av">D</span>Daniela <span class="est" aria-label="5 estrellas">★★★★★</span></figcaption></figure>
+    <figure class="depo"><blockquote>Se la compré a mi niña para que empezara a familiarizarse con el inglés. Me sorprendió que le llamara tanto la atención. Ahora, de vez en cuando, me pide jugar un rato con la aplicación. ¡Y yo encantado!</blockquote><figcaption><span class="av">A</span>Andrés <span class="est" aria-label="5 estrellas">★★★★★</span></figcaption></figure>
+    <figure class="depo"><blockquote>Buscaba algo para que mi hijo aprendiera inglés sin pasar tanto tiempo con los vídeos de siempre. Vi esta aplicación y me pareció una buena alternativa. Le gustan las actividades y, por lo menos, ahora practica algunas palabras jugando.</blockquote><figcaption><span class="av">P</span>Paola <span class="est" aria-label="5 estrellas">★★★★★</span></figcaption></figure>
+    <figure class="depo"><blockquote>La compré para mi hija sin saber muy bien si le iba a gustar, pero la verdad es que sí. Le parece divertido y a veces se sienta a jugar por su cuenta. Me gusta que pueda tener un primer contacto con el inglés de una manera tan sencilla.</blockquote><figcaption><span class="av">M</span>Miguel <span class="est" aria-label="5 estrellas">★★★★★</span></figcaption></figure>
+  </div>
+</section>
+<!-- 6. OFERTA -->
 <section class="bloco">
   <div class="sinsub">
     <h2>Se paga una vez, y ya. Sin cobros sorpresa.</h2>
     <p>Hay apps de lectura en inglés que cobran US$12.49 al mes. Y en muchas suscripciones, si la prueba gratis no se cancela a tiempo, el cobro llega solo, y a veces es de un año completo.</p>
-    <p>Inglés con Tito se paga una sola vez: US$17. Sin mensualidad, sin prueba gratis que después se cobra sola y sin renovación automática.</p>
-    <div class="precio"><b>US$17</b><span>un solo pago<br>sin suscripción</span></div>
+    <ul class="inclui"><li>Las 30 lecciones de Tito, en 5 mundos</li><li>La pronunciación, en voz nativa</li><li>La guía en español para ti</li><li>4 historias para leer</li><li>El álbum de adhesivos y su certificado</li><li>Sin internet, en cualquier celular</li></ul>
+    <div class="precio"><s>US$24.90</s><b>US$17</b><span>un solo pago<br>sin suscripción</span></div>
     <button class="btn buy js-comprar" data-lugar="sinsub">Quiero ayudarlo a leer</button>
   </div>
 </section>
-
-<!-- GARANTIA -->
+<!-- 7. GARANTIA -->
 <section class="bloco">
   <div class="garantia">
     <div class="sello" id="gDias">7<br>días</div>
@@ -238,24 +275,18 @@ footer a{color:var(--ink-2)}
     <p>Prueba las primeras lecciones con él, en casa. Si ves que no es para ustedes, tienes <span class="gd">7 días</span> para pedir el reembolso, y te devolvemos todo lo que pagaste.</p></div>
   </div>
 </section>
-
-<!-- PERGUNTAS -->
+<!-- 8. FAQ -->
 <section class="bloco faq">
   <h2>Preguntas antes de empezar</h2>
   <details><summary>¿Y si yo no hablo nada de inglés?</summary><p>Para eso está hecha. Todo lo que se dice en inglés lo pronuncia una voz nativa, dentro de la app. Todo lo que te toca leer a ti está en español. Lo tuyo es sentarte a su lado, tocar la letra cuando se trabe y celebrar cada palabra que lea.</p></details>
   <details><summary>¿Es una suscripción?</summary><p>No. Es un solo pago. No hay cobro mensual ni anual, y nada se renueva solo.</p></details>
   <details><summary>¿Sirve si todavía no lee nada?</summary><p>Sí. Empieza desde el primer sonido, así que no hace falta que ya sepa leer, ni en inglés ni en español. Y si ya conoce algunas letras, las primeras lecciones le van a salir rápido.</p></details>
   <details><summary>¿No es más tiempo de pantalla?</summary><p>Son unos 10 minutos por lección, contigo al lado. Y cada guía trae algo para hacer después, fuera de la pantalla: en la primera, buscar por la casa cosas que empiecen con el sonido de la s.</p></details>
-  <details><summary>¿Y si ya usa una app que le manda la escuela?</summary><p>Puede seguir con ella. La diferencia aquí es para ti: la guía en español te dice qué aprende en cada lección y cómo acompañarlo. Y cada palabra nueva se arma con sonidos que ya aprendió.</p></details>
-  <details><summary>¿Necesita internet?</summary><p>Solo para abrirla la primera vez. Después funciona sin conexión.</p></details>
   <details><summary>¿En qué celular funciona?</summary><p>En Android y en iPhone, y también en tableta o computadora, desde el navegador. Se abre con un enlace y la dejas en la pantalla de inicio, como cualquier app. No hay que descargarla de la tienda ni crear una cuenta.</p></details>
   <details><summary>¿Y si cambio de celular o la borro?</summary><p>No pierdes la compra. Tu enlace de acceso no tiene contraseña y abre la app en cualquier celular, tableta o computadora, las veces que quieras. Lo que no pasa de uno a otro es su avance: las lecciones hechas y los adhesivos se guardan en el celular o la tableta donde juega. Por eso conviene que practique siempre en el mismo.</p></details>
   <details><summary>¿Cómo la recibo?</summary><p>En el momento. Al terminar el pago se abre una página que te lleva directo a la app. Y la guía de acceso te llega por correo electrónico y queda guardada en tu área de compras de Hotmart.</p></details>
 </section>
-
-<!-- FECHO -->
 <section class="final">
-  <p class="resumo">Las 30 lecciones, las 4 historias, el álbum, el certificado y la guía en español. Un solo pago de US$17, con garantía de <span class="gd">7 días</span>.</p>
   <button class="btn buy js-comprar" data-lugar="final">Quiero ayudarlo a leer</button>
   <p class="cierre">La próxima vez que se trabe en una palabra, vas a saber cómo ayudarlo.</p>
 </section>
@@ -267,7 +298,7 @@ footer a{color:var(--ink-2)}
   <p><a href="terminos.html">Términos de uso</a> · <a href="privacidad.html">Política de privacidad</a></p>
 </footer>
 
-<div class="barra" id="barra"><div class="bt"><b>Inglés con Tito</b>US$17, un solo pago</div><button class="btn buy js-comprar" data-lugar="barra">Lo quiero</button></div>
+<div class="barra" id="barra"><div class="bt"><s>US$24.90</s><b>US$17</b><small>un solo pago</small></div><button class="btn buy js-comprar" data-lugar="barra">Sí, quiero ayudarlo</button></div>
 <div class="toast" id="toast"></div>
 
 <script>
@@ -369,6 +400,32 @@ document.querySelectorAll(".js-comprar").forEach(b => b.onclick = () => {
   g.addEventListener("pointerup", solta); g.addEventListener("pointercancel", solta);
   g.addEventListener("click", e => { if (moveu){ e.preventDefault(); e.stopPropagation(); moveu = false; } }, true);
 })();
+
+/* ===== esteira dos depoimentos: anda devagar sozinha, em loop sem emenda (os itens se repetem), so quando visivel;
+   para ao toque, ao passar o mouse ou ao arrastar, e volta depois; sem movimento para quem pediu menos movimento ===== */
+document.querySelectorAll(".carrossel.esteira").forEach(el => {
+  const calma = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  [...el.children].forEach(f => { const c = f.cloneNode(true); c.setAttribute("aria-hidden", "true"); el.appendChild(c); });
+  const meio = () => { const m = el.children.length / 2; return el.children[m].offsetLeft - el.children[0].offsetLeft; };
+  let parado = false, volta = 0, visivel = false, pos = 0, ant = 0, arr = null;
+  const pausa = ms => { parado = true; clearTimeout(volta); if (ms) volta = setTimeout(() => { parado = false; pos = el.scrollLeft; }, ms); };
+  el.addEventListener("touchstart", () => pausa(), {passive: true});
+  el.addEventListener("touchend", () => pausa(2500), {passive: true});
+  el.addEventListener("mouseenter", () => pausa());
+  el.addEventListener("mouseleave", () => { if (!arr) pausa(900); });
+  el.addEventListener("wheel", () => pausa(2500), {passive: true});
+  el.addEventListener("pointerdown", e => { if (e.pointerType !== "mouse") return; arr = {x: e.clientX, s: el.scrollLeft}; el.classList.add("arrastando"); pausa(); });
+  window.addEventListener("pointermove", e => { if (arr) el.scrollLeft = arr.s - (e.clientX - arr.x); });
+  window.addEventListener("pointerup", () => { if (!arr) return; arr = null; el.classList.remove("arrastando"); pausa(2500); });
+  if ("IntersectionObserver" in window) new IntersectionObserver(es => { visivel = es[0].isIntersecting; }).observe(el); else visivel = true;
+  const passo = tt => {
+    const dt = ant ? Math.min(50, tt - ant) : 16; ant = tt;
+    if (!calma && !parado && visivel){ pos += dt * 0.035; if (pos >= meio()) pos -= meio(); el.scrollLeft = pos; }
+    else { if (el.scrollLeft >= meio()) el.scrollLeft -= meio(); pos = el.scrollLeft; }
+    requestAnimationFrame(passo);
+  };
+  requestAnimationFrame(passo);
+});
 
 /* ===== barra fixa: aparece quando o botão do topo sai da tela ===== */
 const io = new IntersectionObserver(es => es.forEach(e => $("barra").classList.toggle("on", !e.isIntersecting && e.boundingClientRect.top < 0)), {threshold: 0});
