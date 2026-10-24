@@ -166,15 +166,17 @@ footer a{color:var(--ink-2)}
 @media (min-width:700px){.depo{flex-basis:46%}}
 .toast{position:fixed;left:50%;bottom:96px;transform:translateX(-50%);background:var(--ink);color:#fff;font:800 14.5px/1.35 var(--ui);padding:12px 16px;border-radius:14px;z-index:30;display:none;max-width:90vw;text-align:center;pointer-events:none}
 </style>
+<script>(function(){try{var z=Intl.DateTimeFormat().resolvedOptions().timeZone||"";if(/^America\/(Mexico_City|Cancun|Merida|Monterrey|Matamoros|Chihuahua|Ciudad_Juarez|Ojinaga|Mazatlan|Bahia_Banderas|Hermosillo|Tijuana|Ensenada)$|^Mexico\//.test(z))document.documentElement.className+=" mx"}catch(e){}})();</script>
+<style>html:not(.mx) .so-mx{display:none!important}html.mx .fora-mx{display:none!important}.precio b.fora-mx{font-size:30px}.precio.fora-mx{flex-direction:column;align-items:center;gap:4px}.precio.fora-mx span{text-align:center}.barra .bt b.fora-mx{font-size:19px}</style>
 </head>
 <body>
 
 <div class="topfaixa">⚡ Oferta especial solo por hoy, <span class="hoy"></span></div>
 <script>
-/* fecha de hoy en la hora de la Ciudad de México; cambia sola a medianoche */
+/* fecha de hoy en la hora de quien visita; cambia sola a medianoche */
 (function () {
-  var el = document.querySelector(".topfaixa .hoy"), zona = "America/Mexico_City";
-  function actualiza() { try { el.textContent = new Intl.DateTimeFormat("es-MX", { timeZone: zona, day: "numeric", month: "long" }).format(new Date()); } catch (e) {} }
+  var el = document.querySelector(".topfaixa .hoy");
+  function actualiza() { try { el.textContent = new Intl.DateTimeFormat("es-MX", { day: "numeric", month: "long" }).format(new Date()); } catch (e) {} }
   actualiza(); setInterval(actualiza, 30000);
 })();
 </script>
@@ -199,7 +201,7 @@ footer a{color:var(--ink-2)}
     <div class="prog" id="prog"><i id="vslProgI"></i></div>
   </div>
   <button class="btn buy js-comprar" id="bComprarTopo" data-lugar="topo">Quiero que aprenda inglés</button>
-  <p class="note">$299 MXN, IVA incluido · un solo pago, sin mensualidad · garantía de <span class="gd">7 días</span><br>Paga con tarjeta, en OXXO o con Mercado Pago.</p>
+  <p class="note so-mx">$299 MXN, IVA incluido · un solo pago, sin mensualidad · garantía de <span class="gd">7 días</span><br>Paga con tarjeta, en OXXO o con Mercado Pago.</p><p class="note fora-mx">Un solo pago, en tu moneda · sin mensualidad · garantía de <span class="gd">7 días</span><br>Paga con tarjeta, PayPal u otros medios según tu país.</p>
 </header>
 
 <main class="wrap">
@@ -262,12 +264,12 @@ footer a{color:var(--ink-2)}
 <section class="bloco">
   <div class="sinsub">
     <h2>Pagas una vez, y listo. Sin cargos cada mes.</h2>
-    <p>Hay apps de inglés para niños que cobran $379 al mes. Y en algunas, si no cancelas la prueba gratis a tiempo, el cargo llega solo a tu tarjeta, y a veces es por el año completo.</p>
-    <p>Inglés con Tito cuesta $299 MXN, una sola vez. Menos de lo que esas apps cobran por un mes.</p>
+    <p>Hay apps de inglés para niños que cobran <span class="so-mx">$379 al mes</span><span class="fora-mx">cada mes</span>. Y en algunas, si no cancelas la prueba gratis a tiempo, el cargo llega solo a tu tarjeta, y a veces es por el año completo.</p>
+    <p class="so-mx">Inglés con Tito cuesta $299 MXN, una sola vez. Menos de lo que esas apps cobran por un mes.</p><p class="fora-mx">Inglés con Tito se paga una sola vez, y después no llega ningún cargo automático.</p>
     <ul class="inclui"><li>Las 30 lecciones de Tito, en 5 mundos</li><li>La pronunciación, con voz nativa</li><li>La guía en español para ti</li><li>4 historias para leer</li><li>Su álbum de stickers y su certificado</li><li>Sin internet, en el celular que ya tienes</li></ul>
-    <div class="precio"><b>$299</b><span>MXN, IVA incluido<br>un solo pago</span></div>
+    <div class="precio so-mx"><b>$299</b><span>MXN, IVA incluido<br>un solo pago</span></div><div class="precio fora-mx"><b class="fora-mx">Pagas una vez</b><span>en tu moneda<br>sin cobros automáticos</span></div>
     <button class="btn buy js-comprar" data-lugar="sinsub">Quiero que aprenda inglés</button>
-    <p class="note">Paga con tarjeta de crédito o débito, en efectivo en OXXO o con Mercado Pago.</p>
+    <p class="note so-mx">Paga con tarjeta de crédito o débito, en efectivo en OXXO o con Mercado Pago.</p><p class="note fora-mx">Paga con tarjeta de crédito o débito, PayPal u otros medios según tu país.</p>
   </div>
 </section>
 <!-- 7. GARANTIA -->
@@ -283,8 +285,9 @@ footer a{color:var(--ink-2)}
   <h2>Preguntas antes de empezar</h2>
   <details><summary>¿Y si yo no sé nada de inglés?</summary><p>Para eso está hecha. Todo lo que se dice en inglés lo pronuncia una voz nativa, dentro de la app. Todo lo que te toca leer a ti está en español. Lo tuyo es sentarte a su lado, tocar la letra cuando se atore y echarle porras con cada palabra que lea.</p></details>
   <details><summary>¿Es una suscripción?</summary><p>No. Pagas una sola vez. No hay cargo mensual ni anual, y nada se renueva solo.</p></details>
-  <details><summary>¿Puedo pagar en OXXO?</summary><p>Sí. Al pagar, eliges OXXO y te llega una ficha con tu referencia para pagar en efectivo en cualquier tienda OXXO. También puedes pagar con tarjeta de crédito o débito, o con Mercado Pago. Con OXXO, el acceso te llega cuando se confirma tu pago, y eso puede tardar hasta 3 días.</p></details>
-  <details><summary>¿Cómo la recibo?</summary><p>Con tarjeta o Mercado Pago, en cuanto se aprueba el pago se abre una página que te lleva directo a la app. Con OXXO, te llega cuando se confirma el pago en la tienda (puede tardar hasta 3 días). En todos los casos, el acceso también te llega a tu correo y queda guardado en tu área de compras de Hotmart.</p></details>
+  <details class="fora-mx"><summary>¿Cómo puedo pagar?</summary><p>Con tarjeta de crédito o débito, o con PayPal. Según tu país, también puedes pagar en efectivo o en cuotas. Antes de pagar, ves el precio final en tu moneda.</p></details>
+  <details class="so-mx"><summary>¿Puedo pagar en OXXO?</summary><p>Sí. Al pagar, eliges OXXO y te llega una ficha con tu referencia para pagar en efectivo en cualquier tienda OXXO. También puedes pagar con tarjeta de crédito o débito, o con Mercado Pago. Con OXXO, el acceso te llega cuando se confirma tu pago, y eso puede tardar hasta 3 días.</p></details>
+  <details><summary>¿Cómo la recibo?</summary><p><span class="so-mx">Con tarjeta o Mercado Pago, en cuanto se aprueba el pago se abre una página que te lleva directo a la app. Con OXXO, te llega cuando se confirma el pago en la tienda (puede tardar hasta 3 días).</span><span class="fora-mx">Con tarjeta o PayPal, en cuanto se aprueba el pago se abre una página que te lleva directo a la app. Si pagas en efectivo, te llega cuando se confirma el pago (puede tardar unos días).</span> En todos los casos, el acceso también te llega a tu correo y queda guardado en tu área de compras de Hotmart.</p></details>
   <details><summary>¿Sirve si todavía no sabe leer?</summary><p>Sí. Empieza desde el primer sonido, así que no hace falta que ya sepa leer, ni en inglés ni en español. Y si ya conoce algunas letras, las primeras lecciones le van a salir rápido.</p></details>
   <details><summary>¿Con esto va a hablar inglés?</summary><p>Con las 30 lecciones aprende cómo suenan las letras en inglés, a leer sus primeras palabras y frases, y qué significan en español. Es el primer paso, bien dado, no un curso para hablarlo de corrido.</p></details>
   <details><summary>¿Y por qué no una app gratis?</summary><p>Muchas apps para niños le hablan todo en inglés, hasta las instrucciones. Si él no entiende qué hacer y tú no puedes explicarle, se atora. Aquí el inglés es lo que tiene que aprender, y lo que tú necesitas saber viene en español.</p></details>
@@ -304,7 +307,7 @@ footer a{color:var(--ink-2)}
   <p><a href="terminos.html">Términos de uso</a> · <a href="privacidad.html">Política de privacidad</a></p>
 </footer>
 
-<div class="barra" id="barra"><div class="bt"><b>$299</b><small>un solo pago · IVA incl.</small></div><button class="btn buy js-comprar" data-lugar="barra">Sí, quiero empezar</button></div>
+<div class="barra" id="barra"><div class="bt"><b class="so-mx">$299</b><b class="fora-mx">Un solo pago</b><small><span class="so-mx">un solo pago · IVA incl.</span><span class="fora-mx">sin mensualidad</span></small></div><button class="btn buy js-comprar" data-lugar="barra">Sí, quiero empezar</button></div>
 <div class="toast" id="toast"></div>
 
 <script>
